@@ -1,3 +1,3 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
-class Fusion extends Fusion_Core{}
+class Amazon extends Amazon_Core{}

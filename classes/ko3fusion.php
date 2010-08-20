@@ -1,5 +1,3 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
-final class Fusion_SDB extends Fusion_SDB_Core{
-	
-}
+class KO3Fusion extends KO3Fusion_Core{}
