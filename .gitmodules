@@ -1,0 +1,3 @@
+[submodule "vendor/cloudfusion"]
+	path = vendor/cloudfusion
+	url = http://github.com/cloudfusion/cloudfusion.git
