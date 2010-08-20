@@ -1,3 +1,5 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
-class Fusion extends Fusion_Core{}
+abstract class Fusion_SDB_Core extends Fusion{
+	
+}

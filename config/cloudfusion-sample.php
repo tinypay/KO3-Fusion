@@ -2,7 +2,7 @@
 
 /**
  * File: Configuration
- * 	This is the Kohana config file for the original Cloudfusion 'config.inc.php'.
+ * 	This is the Kohana config file for the original Cloudfusion 'config.inc.php'. When you're done, rename this file to cloudfusion.php
  *
  * Copyright:
  * 	2006-2009 Foleeo, Inc., and contributors.
