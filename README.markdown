@@ -2,9 +2,9 @@
 
 1. Make sure you're in the root folder of the git repository of your Kohana installation
 2. Add this repository as a submodule in /modules/ko3-fusion:
-	<pre>git submodule add git@github.com:melvinmt/KO3-Fusion.git modules/ko3-fusion
-		git submodule init
-		git submodule update</pre>
+<pre>git submodule add git@github.com:melvinmt/KO3-Fusion.git modules/ko3-fusion
+	git submodule init
+	git submodule update</pre>
 3. CD into /modules/ko3-fusion
 4. Run git commands to fetch the cloudfusion repository:
 	<pre>git submodule init
