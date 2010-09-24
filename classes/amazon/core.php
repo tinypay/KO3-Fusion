@@ -39,4 +39,60 @@ abstract class Amazon_Core {
 		
 	}
 	
+	public static function s3_get_meta($bucket, $object_id){
+		
+		$s3 = Amazon::S3();
+						
+		$obj = $s3->head_object($bucket, $object_id);
+		
+		$meta = array();	
+				
+		if(isset($obj->header)){
+				
+			$header = $obj->header;
+			
+			foreach ($header as $key => $value){
+				
+				if(strpos($key, 'x-amz-meta-') === 0){
+					
+					$meta[str_replace('x-amz-meta-', '', $key)] = $value;
+					
+				}
+				
+			}
+			
+		}
+		
+		return $meta;
+		
+	}
+	
+	public static function s3_set_public($bucket, $prefix, $multi_exec = true){
+		
+		$s3 = Amazon::S3();
+		
+		$list = $s3->list_objects($bucket, array('prefix' => $prefix));
+		
+		if(isset($list->body->Contents)){
+			
+			$contents = $list->body->Contents;
+			
+			foreach ($contents as $content){				
+				
+				if($multi_exec AND method_exists('FlexSDB', 'handle')){
+					
+					// use FlexSDB multi_exec
+					FlexSDB::handle($s3->set_object_acl($bucket, (string) $content->Key, S3_ACL_PUBLIC, true));
+					
+				}else{
+					
+					$s3->set_object_acl($bucket, (string) $content->Key, S3_ACL_PUBLIC);
+				}
+				
+			}
+			
+		}		
+		
+	}
+	
 }
