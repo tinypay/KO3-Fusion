@@ -58,9 +58,7 @@ abstract class Amazon_Core {
 					$meta[str_replace('x-amz-meta-', '', $key)] = $value;
 					
 				}
-				
 			}
-			
 		}
 		
 		return $meta;
@@ -95,4 +93,28 @@ abstract class Amazon_Core {
 		
 	}
 	
+	public static function delete_all_objects($bucket, $pcre = S3_PCRE_ALL){
+		
+		$s3 = Amazon::S3();
+		$s3->set_vhost($bucket);
+		
+		// Collect all matches
+		$list = $s3->get_object_list($bucket, array('pcre' => $pcre));
+
+		// As long as we have at least one match...
+		if (count($list) > 0){
+			
+			// Hold CURL handles
+			$handles = array();
+
+			// Go through all of the items and delete them.
+			foreach ($list as $item){
+				$handles[] = $this->delete_object($bucket, $item, true);
+			}
+			
+			FlexSDB::handles($handles);
+		}
+
+		return false;
+	}
 }
