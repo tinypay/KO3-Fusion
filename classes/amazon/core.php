@@ -113,7 +113,7 @@ abstract class Amazon_Core {
 
 			// Go through all of the items and delete them.
 			foreach ($list as $item){
-				$handles[] = $this->delete_object($bucket, $item, true);
+				$handles[] = $s3->delete_object($bucket, $item, true);
 			}
 			
 			FlexSDB::handles($handles);
