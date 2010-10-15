@@ -42,9 +42,11 @@ abstract class Amazon_Core {
 	public static function s3_get_meta($bucket, $object_id){
 		
 		$s3 = Amazon::S3();
-						
+										
+	    $s3->set_vhost($bucket);
 		$obj = $s3->head_object($bucket, $object_id);
-		
+// echo Kohana::debug('s3_get_meta obj:');      
+// echo Kohana::debug($obj);        
 		$meta = array();	
 				
 		if(isset($obj->header)){
@@ -70,6 +72,8 @@ abstract class Amazon_Core {
 	public static function s3_set_public($bucket, $prefix, $multi_exec = true){
 		
 		$s3 = Amazon::S3();
+		
+	    $s3->set_vhost($bucket);		
 		
 		$list = $s3->list_objects($bucket, array('prefix' => $prefix));
 		
